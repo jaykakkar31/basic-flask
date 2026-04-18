@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    body {
+        background-color: red;
+    }
+</style>
+{% endblock style %}
+{% block content %}
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home Page</title>
+    </head>
+
+    <body>
+        <h1>Home {{title}}</h1>
+        {% if title == 'Home Page' %}
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
+        {% else %}
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
+        {% endif %}
+
+        {% for i in users %}
+        <p>
+          {{loop.index}} - {{i.email}} - {{i.password}}
+          <a href="{{ url_for('update', id=i.id) }}" class="btn btn-sm btn-primary">Update</a>
+          <a href="{{ url_for('delete', id=i.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+        </p>
+        {% endfor %}
+    </body>
+
+</html>
+{% endblock  %}
